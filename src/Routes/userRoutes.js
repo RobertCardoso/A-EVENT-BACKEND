@@ -2,7 +2,7 @@ let express = require("express");
 
 let route = new express.Router();
 
-let controller = require("../Controller/userController");
+let controller = require("../Controllers/userController");
 
 route.post("/register", controller.register);
 

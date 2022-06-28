@@ -2,6 +2,7 @@ let db = require("../model/db")
 
 let argon = require("argon2")
 
+
 let jwt = require("jsonwebtoken")
 
 let register = async function(req, res){
@@ -30,7 +31,7 @@ let login = async function (req, res) {
     let email = req.body.email
     let password = req.body.password;
 
-    let sql = "select id, select pw_hash from users where email = ?";
+    let sql = "select pw_hash from users where email = ?";
     let params = [email]
     db.query(sql, params, async function(err, results){
         if(err) {
@@ -61,7 +62,7 @@ let login = async function (req, res) {
     };
 
     if (goodPassword) {
-        let signedToken = jwt.sign(token, process.env.JTW_SECRET)
+        let signedToken = jwt.sign(token, process.env.JWT_SECRET)
         res.send(signedToken);
     } else {
         res.sendStatus(400);
