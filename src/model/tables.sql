@@ -3,9 +3,11 @@ create table events (
     eventName VARCHAR(150) NOT NULL,
     address VARCHAR(100) NOT NULL,
     price VARCHAR(100) NOT NULL,
-    eventmusic VARCHAR(),
+    eventmusic VARCHAR(50),
     eventdate VARCHAR(100) NOT NULL,
-    description VARCHAR(1000)
+    description VARCHAR(300) NOT NULL,
+    userId INT NOT NULL, 
+    FOREIGN KEY (userId) REFERENCES users(id)
 )
 
 CREATE TABLE users (

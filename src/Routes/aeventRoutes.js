@@ -7,4 +7,8 @@ router.get("/events", controller.listEvents);
 
 router.get("/events/:id", auth.verifyJWT, controller.eventDetails)
 
+router.post("/events", auth.verifyJWT, controller.createEvent)
+
+router.put("/events/:id", auth.verifyJWT, controller.updateEvent)
+
 module.exports = router

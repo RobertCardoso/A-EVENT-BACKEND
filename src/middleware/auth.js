@@ -11,6 +11,8 @@ let verifyJWT = function(req, res, next){
    if(signedToken){
       try{
          let token = jwt.verify(signedToken, process.env.JWT_SECRET);
+         req.newtoken = token
+         console.log("TOKEN", token )
          next();
       } catch(err){
          res.sendStatus(400);
