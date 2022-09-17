@@ -87,7 +87,7 @@ let createEvent = function(req, res){
     let sql = "insert into events(eventName, address, price, eventmusic, eventdate, description, userId) values (?, ?, ?, ?, ?, ?, ?);"
     let params = [eventName, address, price, eventmusic, eventdate, description, userId];
 
-    db.query(sql, params, function(err, res){
+    db.query(sql, params, function(err, results){
         if(err){
             console.log("Could not execute sql insert", err)
             res.sendStatus(500)
