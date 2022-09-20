@@ -1,3 +1,5 @@
+const cors = require('cors')
+
 const express = require("express");
 const bodyParse = require("body-parser");
 let dotenv = require("dotenv");
@@ -6,6 +8,7 @@ const PORT = process.env.PORT || 8000
 
 let app = express();
 app.use(bodyParse.json())
+app.use(cors())
 
 const aeventRoutes = require("./Routes/aeventRoutes")
 app.use(aeventRoutes)
