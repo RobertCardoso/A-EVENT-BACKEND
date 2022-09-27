@@ -1,8 +1,5 @@
 let db = require("../model/db")
-
 let argon = require("argon2")
-
-
 let jwt = require("jsonwebtoken")
 
 let register = async function(req, res){
@@ -54,6 +51,7 @@ let login = async function (req, res) {
 
     let hash = results[0].pw_hash;
     let userId = results[0].id
+
     let goodPassword = await argon.verify(hash, password);
 
     let token = {
@@ -63,7 +61,8 @@ let login = async function (req, res) {
 
     if (goodPassword) {
         let signedToken = jwt.sign(token, process.env.JWT_SECRET)
-        res.send(signedToken);
+        res.cookie("Bearer", signedToken, {maxAge: 6000000} )
+         res.header("Authorization", `Bearer ${signedToken}`).json({userId: results[0].id})
     } else {
         res.sendStatus(400);
     }
