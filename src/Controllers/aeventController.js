@@ -20,7 +20,7 @@ let eventDetails = function(req, res){
 
     let id = req.params.id
 
-    let sql = "select id, eventName, address, price, eventmusic, eventdate, description from events where id = ?";
+    let sql = "select id, eventName, address, price, eventmusic, eventdate, description, userId from events where id = ?";
     let params = []
     params.push(id)
 
