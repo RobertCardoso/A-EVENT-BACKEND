@@ -154,10 +154,32 @@ let updateEvent = function(req, res){
     })
 }
 
+let deleteEvent = function(req,res){
+    console.log("deleteEvent", req.params.id)
+    let userId = req.newtoken.user_id
+    let id = req.params.id
+
+    let params = [id]
+
+    let sql = "delete from events where id = ?";
+
+    db.query(sql, params,(err, results) => {
+        if(err){
+            console.log("failed to delete item with id " + id, err)
+            res.sendStatus(500)
+        } else {
+            res.sendStatus(204) // nothing to send back, but everything went as planned
+        }
+    })
+
+
+}
+
 
 module.exports = {
     listEvents,
     eventDetails,
     createEvent,
-    updateEvent
+    updateEvent,
+    deleteEvent
 }

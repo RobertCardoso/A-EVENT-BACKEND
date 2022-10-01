@@ -11,4 +11,6 @@ router.post("/events", auth.verifyJWT, controller.createEvent)
 
 router.put("/events/:id", auth.verifyJWT, controller.updateEvent)
 
+router.delete("/events/:id", auth.verifyJWT, controller.deleteEvent)
+
 module.exports = router
